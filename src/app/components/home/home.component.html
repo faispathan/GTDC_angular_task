@@ -1,0 +1,128 @@
+<div class="container">
+    <div id="subform">
+        <h2 class="text-primary text-center my-4">CREATE RECORD</h2>
+    </div>
+    <form [formGroup]="callbackForm" (ngSubmit)="submit()">
+        <div class="row my-4">
+            <div class="col-4"></div>
+            <div class="col-4">
+                <div formGroupName="Name">
+                    <label for="Name" class="form-label">Full Name:</label>
+                    <div class="row g-3">
+                        <div class="col">
+                            <input type="text" name="fname" id="" class="form-control" placeholder="First Name"
+                                formControlName="fname"
+                                [ngClass]="{'is-valid':callbackForm.controls['Name'].controls.fname.valid,'is-invalid':callbackForm.controls['Name'].controls.fname.invalid&&callbackForm.controls['Name'].controls.fname.touched}">
+                            <p *ngIf="callbackForm.controls['Name'].get('fname')?.invalid && callbackForm.controls['Name'].get('fname')?.touched"
+                                class="text-danger">
+                                Please Enter First Name</p>
+                        </div>
+                        <div class="col">
+                            <input type="text" name="mname" id="" class="form-control" placeholder="Middel Name"
+                                formControlName="mname">
+                        </div>
+                        <div class="col">
+                            <input type="text" name="lname" id="" class="form-control" placeholder="Last Name"
+                                formControlName="lname"
+                                [ngClass]="{'is-valid':callbackForm.controls['Name'].controls.lname.valid,'is-invalid':callbackForm.controls['Name'].controls.lname.invalid&&callbackForm.controls['Name'].controls.lname.touched}">
+                            <p *ngIf="callbackForm.controls['Name'].get('lname')?.invalid && callbackForm.controls['Name'].get('lname')?.touched"
+                                class="text-danger">
+                                Please Enter Last Name</p>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <label for="Email" class="form-label">Email:</label>
+                    <input type="text" name="" id="" class="form-control" placeholder="Enter Your Email"
+                        formControlName="email"
+                        [ngClass]="{'is-valid':callbackForm.controls['email'].valid,'is-invalid':callbackForm.controls['email'].invalid&&callbackForm.controls.email.touched}">
+                    <p *ngIf="callbackForm.get('email')?.invalid && callbackForm.get('email')?.touched"
+                        class="text-danger">Please Enter Email
+                    </p>
+                </div>
+                <div>
+                    <label for="Phone" class="form-label">Phone:</label>
+                    <input type="text" name="" id="" class="form-control" placeholder="Mobile" formControlName="phone"
+                        [ngClass]="{'is-valid':callbackForm.controls.phone.valid,'is-invalid':callbackForm.controls.phone.invalid&&callbackForm.controls.phone.touched}">
+                    <p *ngIf="callbackForm.get('phone')?.invalid && callbackForm.get('phone')?.touched"
+                        class="text-danger">Please Enter Valid
+                        Number</p>
+                </div>
+                <div class="col-12">
+                    <label for="Address1" class="form-label">Address 1:</label>
+                    <input type="text" class="form-control" id="inputAddress" placeholder="Address"
+                        [ngClass]="{'is-valid':callbackForm.controls.address1.valid,'is-invalid':callbackForm.controls.address1.invalid&&callbackForm.controls.address1.touched}"
+                        formControlName="address1">
+                    <p *ngIf="callbackForm.get('address1')?.invalid && callbackForm.get('address1')?.touched"
+                        class="text-danger">Please Enter Address
+                    </p>
+                </div>
+                <div class="col-12">
+                    <label for="Address2" class="form-label">Address 2:</label>
+                    <input type="text" class="form-control" id="inputAddress" placeholder="Address"
+                        formControlName="address2">
+                </div>
+                <div class="col-12">
+                    <label for="City" class="form-label">City:</label>
+                    <input type="text" class="form-control" id="inputAddress" placeholder="City" formControlName='city'
+                        [ngClass]="{'is-valid':callbackForm.controls.city.valid,'is-invalid':callbackForm.controls.city.invalid&&callbackForm.controls.city.touched}">
+                    <p *ngIf="callbackForm.get('city')?.invalid && callbackForm.get('city')?.touched"
+                        class="text-danger">Please Enter City</p>
+                </div>
+
+                <div class="col-12">
+                    <label for="Zip" class="form-label">Pin Code:</label>
+                    <input type="text" class="form-control" id="inputAddress" placeholder="zip" formControlName="zip"
+                        [ngClass]="{'is-valid':callbackForm.controls.zip.valid,'is-invalid':callbackForm.controls.zip.invalid&&callbackForm.controls.zip.touched}">
+                    <p *ngIf="callbackForm.get('zip')?.invalid && callbackForm.get('zip')?.touched" class="text-danger">
+                        Please Enter Valid
+                        Pincode</p>
+                </div>
+
+                <div>
+                    <button class="form-control btn btn-primary my-4" type="submit" [disabled]="!callbackForm.valid"
+                        *ngIf="submitData">Submit</button>
+                </div>
+
+                <div>
+                    <button class="form-control btn btn-primary my-4" *ngIf="UpdateData"
+                        (click)="onUpdate()">Update</button>
+                </div>
+            </div>
+        </div>
+    </form>
+    <!-- {{callbackForm.value|json}} -->
+</div>
+<h2 class="text-primary text-center my-4">ALL RECORD'S</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">id</th>
+            <th scope="col">Full Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">phone</th>
+            <th scope="col">Address1</th>
+            <th scope="col">Address2</th>
+            <th scope="col">City</th>
+            <th scope="col">Pin Code</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let data of formDataArr; let i=index">
+            <th scope="row">{{i+1}}</th>
+            <td>{{data.Name.fname}}</td>
+            <td>{{data.email}}</td>
+            <td>{{data.phone}}</td>
+            <td>{{data.address1}}</td>
+            <td>{{data.address2}}</td>
+            <td>{{data.city}}</td>
+            <td>{{data.zip}}</td>
+            <td>
+                <button class="btn btn-sm btn-success mx-2" (click)="onEdit(data)">Edit</button>
+                <button class="btn btn-sm btn-danger" (click)="onDelete(data.id)">Delete</button>
+            </td>
+        </tr>
+    </tbody>
+</table>

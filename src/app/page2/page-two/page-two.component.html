@@ -1,0 +1,26 @@
+<div class="container">
+  <div>
+    <h2 class="text-center text-primary my-5">All Available Records</h2>
+  </div>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Sr No</th>
+        <th scope="col">First Name</th>
+        <th scope="col">Middel Name</th>
+        <th scope="col">Last Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of myData  ; let i=index">
+        <th scope="row"><a routerLink="{{data.id}}">{{i+1}}</a></th>
+        <td scope="row" [title]="data.id"><a routerLink="{{data.id}}">{{data.Name.fname}}</a></td>
+        <td scope="row"><a routerLink="{{data.id}}">{{data.Name.mname}}</a></td>
+        <td scope="row"><a routerLink="{{data.id}}">{{data.Name.lname}}</a></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div>
+  <p class="text-danger">* For seeing full details click on record row</p>
+</div>

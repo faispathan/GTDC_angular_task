@@ -1,0 +1,10 @@
+/* You can add global styles to this file, and also import other style files */
+/* body {
+    background-color: #e5e5f7;
+    opacity: 1;
+    background: linear-gradient(135deg, #614a5955 25%, transparent 25%) -10px 0/ 20px 20px, linear-gradient(225deg, #614a59 25%, transparent 25%) -10px 0/ 20px 20px, linear-gradient(315deg, #614a5955 25%, transparent 25%) 0px 0/ 20px 20px, linear-gradient(45deg, #614a59 25%, #e5e5f7 25%) 0px 0/ 20px 20px;
+} */
+
+label {
+    color: white;
+}
